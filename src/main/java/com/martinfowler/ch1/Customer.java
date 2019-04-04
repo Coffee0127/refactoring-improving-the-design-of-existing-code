@@ -50,22 +50,22 @@ public class Customer {
         return result;
     }
 
-    private double amountFor(Rental each) {     // 計算一筆租片費用
+    private double amountFor(Rental aRental) {     // 計算一筆租片費用
         double thisAmount = 0;
-        switch (each.getMovie().getPriceCode()) {
+        switch (aRental.getMovie().getPriceCode()) {
             case Movie.REGULAR:         // 普通片
                 thisAmount += 2;
-                if (each.getDaysRented() > 2) {
-                    thisAmount += (each.getDaysRented() - 2) * 1.5;
+                if (aRental.getDaysRented() > 2) {
+                    thisAmount += (aRental.getDaysRented() - 2) * 1.5;
                 }
                 break;
             case Movie.NEW_RELEASE:     // 新片
-                thisAmount += each.getDaysRented() * 3;
+                thisAmount += aRental.getDaysRented() * 3;
                 break;
             case Movie.CHILDRENS:       // 兒童片
                 thisAmount += 1.5;
-                if (each.getDaysRented() > 3) {
-                    thisAmount += (each.getDaysRented() - 3) * 1.5;
+                if (aRental.getDaysRented() > 3) {
+                    thisAmount += (aRental.getDaysRented() - 3) * 1.5;
                 }
                 break;
         }
