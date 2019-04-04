@@ -41,15 +41,12 @@ public class Customer {
     }
 
     private int getFrequentRenterPoints(Rental each) {
-        int frequentRenterPoints = 0;
-        // add frequent renter points (累加 常客積點)
-        frequentRenterPoints++;
-        // add bonus for a two day new release rental
         if (each.getMovie().getPriceCode() == Movie.NEW_RELEASE
             && each.getDaysRented() > 1) {
-            frequentRenterPoints++;
+            return 2;
+        } else {
+            return 1;
         }
-        return frequentRenterPoints;
     }
 
 }
