@@ -14,7 +14,7 @@ public class CustomerTest {
         String expected = "Rental Record for Jack\n" +
             "Amount owed is 0.0\n" +
             "You earned 0 frequent renter points";
-        resultShouldBe(expected);
+        statementShouldBe(expected);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class CustomerTest {
             "\tAvengers: Infinity War\t3.5\n" +
             "Amount owed is 3.5\n" +
             "You earned 1 frequent renter points";
-        resultShouldBe(expected);
+        statementShouldBe(expected);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class CustomerTest {
             "\tVenom\t9.0\n" +
             "Amount owed is 9.0\n" +
             "You earned 2 frequent renter points";
-        resultShouldBe(expected);
+        statementShouldBe(expected);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class CustomerTest {
             "\tSpider-Man: Into the Spider-Verse\t1.5\n" +
             "Amount owed is 1.5\n" +
             "You earned 1 frequent renter points";
-        resultShouldBe(expected);
+        statementShouldBe(expected);
     }
 
     @Test
@@ -62,7 +62,27 @@ public class CustomerTest {
             "\tAvengers: Infinity War\t11.0\n" +
             "Amount owed is 23.0\n" +
             "You earned 4 frequent renter points";
-        resultShouldBe(expected);
+        statementShouldBe(expected);
+    }
+
+    @Test
+    public void htmlStatement_noRentals() {
+        givenCustomerWithRentals("Jack");
+        String expected = "<h1>Rentals for <em>Jack</em></h1>\n" +
+            "<p>You owe <em>0.0</em></p>\n" +
+            "<p>On this rental you earned <em>0</em> frequent renter points</p>";
+        htmlStatementShouldBe(expected);
+    }
+
+    @Test
+    public void htmlStatement_oneRegularRental() {
+        Rental rental = createRental("Avengers: Infinity War", Movie.REGULAR, 3);
+        givenCustomerWithRentals("Jack", rental);
+        String expected = "<h1>Rentals for <em>Jack</em></h1>\n" +
+            "Avengers: Infinity War: 3.5<br>\n" +
+            "<p>You owe <em>3.5</em></p>\n" +
+            "<p>On this rental you earned <em>1</em> frequent renter points</p>";
+        htmlStatementShouldBe(expected);
     }
 
     private Rental createRental(String title, int priceCode, int daysRented) {
@@ -77,7 +97,11 @@ public class CustomerTest {
         }
     }
 
-    private void resultShouldBe(String expected) {
+    private void statementShouldBe(String expected) {
         assertEquals(expected, customer.statement());
+    }
+
+    private void htmlStatementShouldBe(String expected) {
+        assertEquals(expected, customer.htmlStatement());
     }
 }
