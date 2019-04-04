@@ -18,9 +18,7 @@ public class Rental {
     }
 
     double getCharge() {     // 計算一筆租片費用
-        Movie movie = getMovie();
-        int daysRented = getDaysRented();
-        return movie.getCharge(daysRented);
+        return getMovie().getCharge(getDaysRented());
     }
 
     int getFrequentRenterPoints() {
