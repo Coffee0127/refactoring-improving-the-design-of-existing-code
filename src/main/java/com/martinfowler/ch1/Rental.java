@@ -20,6 +20,10 @@ public class Rental {
     double getCharge() {     // 計算一筆租片費用
         Movie movie = getMovie();
         int daysRented = getDaysRented();
+        return getCharge(movie, daysRented);
+    }
+
+    private double getCharge(Movie movie, int daysRented) {
         double result = 0;
         switch (movie.getPriceCode()) {
             case Movie.REGULAR:         // 普通片
