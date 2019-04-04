@@ -18,8 +18,9 @@ public class Rental {
     }
 
     double getCharge() {     // 計算一筆租片費用
+        Movie movie = getMovie();
         double result = 0;
-        switch (getMovie().getPriceCode()) {
+        switch (movie.getPriceCode()) {
             case Movie.REGULAR:         // 普通片
                 result += 2;
                 if (getDaysRented() > 2) {
