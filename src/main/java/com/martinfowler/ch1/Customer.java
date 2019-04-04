@@ -27,7 +27,7 @@ public class Customer {
 
         while (rentals.hasMoreElements()) {
             Rental each = rentals.nextElement();    // 取得一筆租借紀錄
-            frequentRenterPoints += getFrequentRenterPoints(each);
+            frequentRenterPoints += each.getFrequentRenterPoints();
 
             // show figures for this rental (顯示此筆租借資料)
             result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
@@ -38,15 +38,6 @@ public class Customer {
         result += "Amount owed is " + totalAmount + "\n";
         result += "You earned " + frequentRenterPoints + " frequent renter points";
         return result;
-    }
-
-    private int getFrequentRenterPoints(Rental each) {
-        if (each.getMovie().getPriceCode() == Movie.NEW_RELEASE
-            && each.getDaysRented() > 1) {
-            return 2;
-        } else {
-            return 1;
-        }
     }
 
 }
