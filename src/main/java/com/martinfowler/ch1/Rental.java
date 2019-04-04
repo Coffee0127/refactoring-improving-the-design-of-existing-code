@@ -17,7 +17,7 @@ public class Rental {
         return _movie;
     }
 
-    double amountFor() {     // 計算一筆租片費用
+    double getCharge() {     // 計算一筆租片費用
         double result = 0;
         switch (getMovie().getPriceCode()) {
             case Movie.REGULAR:         // 普通片

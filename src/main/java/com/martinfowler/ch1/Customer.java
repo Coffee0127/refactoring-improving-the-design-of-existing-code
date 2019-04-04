@@ -29,7 +29,7 @@ public class Customer {
             double thisAmount = 0;
             Rental each = rentals.nextElement();    // 取得一筆租借紀錄
 
-            thisAmount = each.amountFor();   // 計算一筆租片費用
+            thisAmount = each.getCharge();   // 計算一筆租片費用
 
             // add frequent renter points (累加 常客積點)
             frequentRenterPoints++;
