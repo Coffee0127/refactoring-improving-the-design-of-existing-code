@@ -39,7 +39,7 @@ public class Movie {
 
     double getCharge(int daysRented) {
         double result = 0;
-        switch (getPriceCode()) {
+        switch (_price.getPriceCode()) {
             case REGULAR:         // 普通片
                 result += 2;
                 if (daysRented > 2) {
