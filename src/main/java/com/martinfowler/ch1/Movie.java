@@ -6,7 +6,7 @@ public class Movie {
     public static final int NEW_RELEASE = 1;
 
     private String _title;    // 名稱
-    private int _priceCode;   // 價格(代號)
+    private Price _price;     // 價格(代號)
 
     public Movie(String title, int priceCode) {
         _title = title;
@@ -14,11 +14,23 @@ public class Movie {
     }
 
     public int getPriceCode() {
-        return _priceCode;
+        return _price.getPriceCode();
     }
 
     public void setPriceCode(int arg) {
-        _priceCode = arg;
+        switch (arg) {
+            case REGULAR:         // 普通片
+                _price = new RegularPrice();
+                break;
+            case CHILDRENS:       // 兒童片
+                _price = new ChildrensPrice();
+                break;
+            case NEW_RELEASE:     // 新片
+                _price = new NewReleasePrice();
+                break;
+            default:
+                throw new IllegalArgumentException("Incorrect Price Code");
+        }
     }
 
     public String getTitle() {
