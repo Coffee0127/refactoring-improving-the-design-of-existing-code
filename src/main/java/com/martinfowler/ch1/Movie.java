@@ -39,29 +39,7 @@ public class Movie {
 
     double getCharge(int daysRented) {
         Price price = _price;
-        return getCharge(daysRented, price);
-    }
-
-    private double getCharge(int daysRented, Price price) {
-        double result = 0;
-        switch (price.getPriceCode()) {
-            case REGULAR:         // 普通片
-                result += 2;
-                if (daysRented > 2) {
-                    result += (daysRented - 2) * 1.5;
-                }
-                break;
-            case NEW_RELEASE:     // 新片
-                result += daysRented * 3;
-                break;
-            case CHILDRENS:       // 兒童片
-                result += 1.5;
-                if (daysRented > 3) {
-                    result += (daysRented - 3) * 1.5;
-                }
-                break;
-        }
-        return result;
+        return price.getCharge(daysRented);
     }
 
     int getFrequentRenterPoints(int daysRented) {
