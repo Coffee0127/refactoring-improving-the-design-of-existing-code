@@ -39,6 +39,10 @@ public class Movie {
 
     double getCharge(int daysRented) {
         Price price = _price;
+        return getCharge(daysRented, price);
+    }
+
+    private double getCharge(int daysRented, Price price) {
         double result = 0;
         switch (price.getPriceCode()) {
             case REGULAR:         // 普通片
